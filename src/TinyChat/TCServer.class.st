@@ -22,6 +22,11 @@ TCServer class >> stopAll [
 	self allInstancesDo: #stop
 ]
 
+{ #category : #adding }
+TCServer >> addMessage: aRequest [
+	messageQueue add: (TCMessage from: (aRequest at: #sender) text: (aRequest at: #text))
+]
+
 { #category : #initialization }
 TCServer >> initialize [ 
 	super initialize.
@@ -36,6 +41,16 @@ TCServer >> initializePort: anInteger [
 		#debugMode -> true
 	 }.
 	teapotServer start
+]
+
+{ #category : #adding }
+TCServer >> messageCount [
+	^ messageQueue size
+]
+
+{ #category : #adding }
+TCServer >> messagesFrom: aRequest [
+	^ messageQueue formattedMessagesFrom: (#request at: #id)
 ]
 
 { #category : #initialization }
