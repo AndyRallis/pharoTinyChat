@@ -50,7 +50,7 @@ TCServer >> messageCount [
 
 { #category : #adding }
 TCServer >> messagesFrom: aRequest [
-	^ messageQueue formattedMessagesFrom: (#request at: #id)
+	^ messageQueue formattedMessagesFrom: (aRequest at: #id)
 ]
 
 { #category : #initialization }
